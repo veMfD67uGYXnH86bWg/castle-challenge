@@ -1,12 +1,29 @@
-# React + Vite
+# Guy Who Writes Books - Castle Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is my submission for *
+*[ThreeJs Journey's castle-themed challenge](https://threejs-journey.com/challenges/018-castle)**.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install this project with npm:
 
-## Expanding the ESLint configuration
+```bash
+  cd castle-challenge
+  npm install
+  npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Demo
+
+https://castle-challenge.pages.dev/
+
+## Credits
+
+Placeholder objects :
+
+- Character Base by madtrollstudio [CC-BY](https://creativecommons.org/licenses/by/3.0/)
+  via [Poly Pizza](https://poly.pizza/m/qbDLeTtb8K
+- Castle by jeremy [CC-BY](https://creativecommons.org/licenses/by/3.0/)
+  via [Poly Pizza](https://poly.pizza/m/0TfSw65gU2G)
+  Inspired by the latest [Alan Wake 2](https://www.alanwake.com/) game
+
