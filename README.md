@@ -1,7 +1,6 @@
 # Guy Who Writes Books - Castle Challenge
 
-This project is my submission for *
-*[ThreeJs Journey's castle-themed challenge](https://threejs-journey.com/challenges/018-castle)**.
+This project is my submission for **[ThreeJs Journey's castle-themed challenge](https://threejs-journey.com/challenges/018-castle)**.
 
 ## Installation
 
