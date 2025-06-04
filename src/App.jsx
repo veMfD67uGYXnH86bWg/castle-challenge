@@ -15,6 +15,7 @@ function App() {
         <>
             <Leva/>
             <Canvas
+                shadows={true}
                 dpr={[1, 2]}
                 gl={{
                     toneMapping: 4,
@@ -27,7 +28,7 @@ function App() {
                     name='orbit_controls'
                     makeDefault={true}
                 />
-                <axesHelper args={[10]}/>
+                {/*<axesHelper args={[10]}/>*/}
                 <color
                     attach='background'
                     args={[backgroundColor]}
