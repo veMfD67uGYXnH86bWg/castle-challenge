@@ -13,7 +13,6 @@ function App() {
 
     return (
         <>
-            <Leva/>
             <Canvas
                 shadows={true}
                 dpr={[1, 2]}
@@ -24,10 +23,10 @@ function App() {
                     stencil: true
                 }}
             >
-                <OrbitControls
-                    name='orbit_controls'
-                    makeDefault={true}
-                />
+                {/*<OrbitControls*/}
+                {/*    name='orbit_controls'*/}
+                {/*    makeDefault={true}*/}
+                {/*/>*/}
                 {/*<axesHelper args={[10]}/>*/}
                 <color
                     attach='background'

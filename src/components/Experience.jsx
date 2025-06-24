@@ -1,13 +1,18 @@
 import * as THREE from 'three';
 import {Castle} from './Castle.jsx'
 import {Perf} from 'r3f-perf'
-import {KeyboardControls, Sky} from '@react-three/drei'
+import BVHEcctrl from "bvhecctrl";
+import {
+    StaticCollider,
+} from "bvhecctrl";
+
+import {KeyboardControls, Sky, CameraControls, Grid} from '@react-three/drei'
 import {Character} from './Character.jsx'
 import {Rain} from './Rain.jsx'
-import Ecctrl, {EcctrlAnimation} from "ecctrl"
-import {Physics, RigidBody} from '@react-three/rapier'
-import React from 'react'
+import React, {useRef} from 'react'
 import {Spotlight} from './Spotlight.jsx'
+import {useFrame} from '@react-three/fiber'
+import {button, useControls} from 'leva'
 
 
 export function Experience() {
@@ -19,12 +24,26 @@ export function Experience() {
         {name: "rightward", keys: ["ArrowRight", "KeyD"]},
         {name: "jump", keys: ["Space"]},
         {name: "run", keys: ["Shift"]},
-        // Optional animation key map
-        // {name: "action1", keys: ["1"]},
-        // {name: "action2", keys: ["2"]},
-        // {name: "action3", keys: ["3"]},
-        // {name: "action4", keys: ["KeyF"]},
     ];
+
+    const ecctrlRef = useRef(null);
+    const camControlRef = useRef(null);
+
+    useControls('Camera Controls', {
+        CameraLock: button(() => {
+            camControlRef.current?.lockPointer()
+        }),
+    })
+
+    useFrame(() => {
+        if (ecctrlRef.current.group)
+            camControlRef.current.moveTo(
+                ecctrlRef.current.group.position.x,
+                ecctrlRef.current.group.position.y + 0.3,
+                ecctrlRef.current.group.position.z,
+                true
+            )
+    });
 
 
     return (
@@ -53,28 +72,48 @@ export function Experience() {
             {/*<Rain/>*/}
 
             {/* Lights */}
-            <ambientLight intensity={0.2}/>
-            <Spotlight/>
-
-            <Character/>
-            <Castle
-                position={[0, -1, -10]}
-                rotation={[0, -Math.PI / 2, 0]}
+            <CameraControls
+                ref={camControlRef}
+                smoothTime={0.1}
+                // colliderMeshes={colliderMeshesArray}
+                makeDefault
             />
-            <mesh
-                receiveShadow={true}
-                scale={[150, 150, 1]}
-                rotation={[-Math.PI / 2, 0, 0]}
-                position={[0, -1.05, 0]}
-            >
-                <planeGeometry
-                    args={[20, 20]}
-                />
-                <meshStandardMaterial
-                    color='#56cb4e'
-                    side={THREE.DoubleSide}
-                />
-            </mesh>
+            <ambientLight intensity={1.5}/>
+            {/*<Spotlight/>*/}
+
+            <KeyboardControls map={keyboardMap}>
+                <BVHEcctrl ref={ecctrlRef} debug colliderCapsuleArgs={[0.3, 1.2, 4, 8]}>
+                    <Character animation={"Idle"}/>
+                </BVHEcctrl>
+            </KeyboardControls>
+
+            <Grid
+                args={[300, 300]}
+                sectionColor={"lightgray"}
+                cellColor={"gray"}
+                position={[0, 0.01, 0]}
+                userData={{camExcludeCollision: true}} // this won't be collide by camera ray
+            />
+            <StaticCollider debug>
+                {/*<Castle*/}
+                {/*    position={[0, -1, -10]}*/}
+                {/*    rotation={[0, -Math.PI / 2, 0]}*/}
+                {/*/>*/}
+                <mesh
+                    receiveShadow={true}
+                    scale={[150, 150, 1]}
+                    rotation={[-Math.PI / 2, 0, 0]}
+                    position={[0, 0, 0]}
+                >
+                    <planeGeometry
+                        args={[20, 20]}
+                    />
+                    <meshStandardMaterial
+                        color='lightblue'
+                        side={THREE.DoubleSide}
+                    />
+                </mesh>
+            </StaticCollider>
 
             {/*<Physics
                 // debug={physics}

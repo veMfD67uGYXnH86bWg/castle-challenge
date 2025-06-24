@@ -13,7 +13,7 @@
     "@react-three/drei": "^10.1.2",
     "@react-three/fiber": "^9.1.2",
     "@react-three/rapier": "^2.1.0",
-    "ecctrl": "^1.0.92",
+    "bvhecctrl": "^0.0.5",
     "install": "^0.13.0",
     "leva": "^0.10.0",
     "npm": "^11.4.1",
